@@ -1,12 +1,15 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  let seenNumbers={}
   for(let i=0; i<array.length; i++){
-    for(let j=i+1; j<array.length; j++){
-      let sum= array[i]+array[j]
-      if(sum === target) return true
-      
+    let complement=target - array[i]
+    // console.log(complement)
+    if(seenNumbers[complement]){
+      return true
+    }else{
+      seenNumbers[array[i]]= true
+    }  
   }
-}
 return false
 }
 
@@ -21,16 +24,21 @@ return false
 
 /* 
   Add your pseudocode here
+  create an obj of seen Numbers
   loop into our arry to get each element
-  loop the array starting from the second index from the start
-  in each loop add the two elements and compare i the result is equal to target.
-  print result
-  continue
-  end when all elements have been iterated
+  get the complement of the target using the current element
+  confirm if our complement is present as a key in the obj, return true
+  otherwise, add element to obj. 
+  
+  finally return false
 */
 
 /*
   Add written explanation of your solution here
+  have an object that stores the numbers we have already seen.
+  in each iteration check to see if complement of the target against the currentt number is present in the obj
+  we return true, otherwise we add the element as a key in our obj
+
 */
 
 // You can run `node index.js` to view these console logs
